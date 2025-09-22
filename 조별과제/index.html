@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>조별 과제 메인 페이지</title>
+  <style>
+    /* 레이아웃 기본 */
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: #f4f6fb;
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh; /* footer를 항상 맨 밑에 */
+    }
+
+    header {
+      background: #4a90e2;
+      color: white;
+      padding: 40px 20px;
+      font-size: 2rem;
+      font-weight: bold;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    /* 중앙 메뉴 영역 */
+    main {
+      flex: 1; /* 남은 공간을 채워 메뉴를 중앙에 */
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .menu {
+      display: flex;
+      gap: 40px;
+      flex-wrap: wrap;
+      margin-top: 20px;
+    }
+
+    .menu button {
+      background: #ffffff;
+      border: 2px solid #4a90e2;
+      color: #4a90e2;
+      padding: 20px 40px;
+      font-size: 1.1rem;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+
+    .menu button:hover {
+      background: #4a90e2;
+      color: white;
+      transform: translateY(-3px);
+    }
+
+    /* 구분선 */
+    hr {
+      width: 80%;
+      margin: 60px auto 30px;
+      border: none;
+      height: 2px;
+      background: #ddd;
+    }
+
+    /* footer(조원명단) */
+    footer {
+      background: #ffffff;
+      padding: 20px 40px;
+      text-align: left; /* 글씨 왼쪽 정렬 */
+      box-shadow: 0 -4px 10px rgba(0,0,0,0.05);
+      font-size: 1.1rem;
+    }
+
+    a{text-decoration: none;}
+
+  </style>
+</head>
+<body>
+
+  <header>
+    조별 과제 메인 페이지
+  </header>
+
+  <main>
+    
+    <div class="menu">
+      <a href="ekakdgofk.html"><button>메뉴 1</button></a>
+      <button>메뉴 2</button>
+      <button>메뉴 3</button>
+    </div>
+  </main>
+
+  <footer>
+    <hr>
+    <strong>조원 명단</strong><br>
+    홍길동 · 김영희 · 박철수 · 이민지
+  </footer>
+
+</body>
+</html>
