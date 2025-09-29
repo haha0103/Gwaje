@@ -1,20 +1,24 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>조별 과제 메인 페이지</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Pretendard&display=swap">
   <style>
-    /* 레이아웃 기본 */
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
       padding: 0;
-      font-family: "Segoe UI", Arial, sans-serif;
-      background: #f4f6fb;
+      font-family: 'Pretendard', 'Segoe UI', Arial, sans-serif;
+      background: linear-gradient(to bottom, #f4f6fb, #e9eff9);
       color: #333;
       display: flex;
       flex-direction: column;
-      min-height: 100vh; /* footer를 항상 맨 밑에 */
+      min-height: 100vh;
     }
 
     header {
@@ -25,43 +29,76 @@
       font-weight: bold;
       text-align: center;
       box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      position: relative;
+      z-index: 2;
     }
 
-    /* 중앙 메뉴 영역 */
-    main {
-      flex: 1; /* 남은 공간을 채워 메뉴를 중앙에 */
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-    }
+    /* NAV: 숨겨진 상태 + 박스 스타일 */
+    nav {
+  width: 100%;
+  background: #cdddf5;
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  padding: 20px 0;
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease, opacity 0.4s ease;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
 
-    .menu {
-      display: flex;
-      gap: 40px;
-      flex-wrap: wrap;
-      margin-top: 20px;
-    }
+/* 헤더에 마우스를 올리면 nav 전체가 펼쳐짐 */
+header:hover + nav {
+  max-height: 100px;
+  opacity: 1;
+}
 
-    .menu button {
-      background: #ffffff;
-      border: 2px solid #4a90e2;
+
+    nav a {
       color: #4a90e2;
-      padding: 20px 40px;
-      font-size: 1.1rem;
-      border-radius: 20px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      text-decoration: none;
+      padding: 10px 16px;
+      border-radius: 6px;
+      font-size: 1rem;
+      transition: background 0.3s, color 0.3s;
     }
 
-    .menu button:hover {
+    nav a:hover {
       background: #4a90e2;
       color: white;
-      transform: translateY(-3px);
     }
 
-    /* 구분선 */
+    main {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 40px 20px;
+    }
+
+    .card {
+      background: white;
+      padding: 40px;
+      border-radius: 16px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+      max-width: 600px;
+      width: 100%;
+      text-align: center;
+    }
+
+    .card h2 {
+      color: #4a90e2;
+      font-size: 1.8rem;
+      margin-bottom: 20px;
+    }
+
+    .card p {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      color: #555;
+    }
+
     hr {
       width: 80%;
       margin: 60px auto 30px;
@@ -70,20 +107,40 @@
       background: #ddd;
     }
 
-    /* footer(조원명단) */
     footer {
       background: #ffffff;
       padding: 20px 40px;
-      text-align: left; /* 글씨 왼쪽 정렬 */
+      text-align: left;
       box-shadow: 0 -4px 10px rgba(0,0,0,0.05);
       font-size: 1.1rem;
     }
 
-    a{
+    footer a {
       text-decoration: none;
-      color: #b4b4b4;
+      color: #888;
+      transition: color 0.3s;
     }
 
+    footer a:hover {
+      color: #4a90e2;
+    }
+
+    @media (max-width: 600px) {
+      nav {
+        flex-wrap: wrap;
+        gap: 15px;
+        padding: 15px;
+      }
+
+      nav a {
+        font-size: 0.95rem;
+        padding: 8px 12px;
+      }
+
+      .card {
+        padding: 30px 20px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -92,18 +149,26 @@
     학업 관리
   </header>
 
+  <nav>
+    <a href="ekakdgofk.html">📅 일정표</a>
+    <a href="#">📚 자료실</a>
+    <a href="#">📝 과제 제출</a>
+  </nav>
+
   <main>
-    
-    <div class="menu">
-      <a href="ekakdgofk.html"><button>일정표</button></a>
-      <button>메뉴 2</button>
-      <button>메뉴 3</button>
+    <div class="card">
+      <h2>📘 조별 과제 관리 페이지</h2>
+      <p>
+        이 웹사이트는 조별 과제를 보다 체계적으로 관리하기 위해 제작되었습니다.<br/>
+        상단의 메뉴를 통해 일정 확인, 자료 공유, 과제 제출 등을 편리하게 이용하세요.<br/><br/>
+        모두가 함께 만드는 효율적인 팀워크를 응원합니다! 💪
+      </p>
     </div>
   </main>
 
   <footer>
-    <hr>
-    <a href="whdnjsthro.html">문하경 · 이성헌 · 박현민</a> 
+    <hr />
+    <a href="whdnjsthro.html">문하경 · 이성헌 · 박현민</a>
   </footer>
 
 </body>
