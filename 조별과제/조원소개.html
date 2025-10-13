@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>조별 과제 메인 페이지</title>
+  <style>
+    /* 레이아웃 기본 */
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: #f4f6fb;
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh; /* footer를 항상 맨 밑에 */
+    }
+
+    header {
+      background: #4a90e2;
+      color: white;
+      padding: 20px 10px;
+      font-size: 2rem;
+      font-weight: bold;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    /* 중앙 메뉴 영역 */
+    main {
+      flex: 1; /* 남은 공간을 채워 메뉴를 중앙에 */
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .menu {
+      display: flex;
+      gap: 40px;
+      flex-wrap: wrap;
+      margin-top: 20px;
+    }
+
+    .menu button {
+      background: #ffffff;
+      border: 2px solid #4a90e2;
+      color: #4a90e2;
+      padding: 20px 40px;
+      font-size: 1.1rem;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+
+    .menu button:hover {
+      background: #4a90e2;
+      color: white;
+      transform: translateY(-3px);
+    }
+
+    /* 구분선 */
+    hr {
+      width: 80%;
+      margin: 60px auto 30px;
+      border: none;
+      height: 2px;
+      background: #ddd;
+    }
+
+    /* footer(조원명단) */
+    footer {
+      background: #ffffff;
+      padding: 20px 40px;
+      text-align: left; /* 글씨 왼쪽 정렬 */
+      box-shadow: 0 -4px 10px rgba(0,0,0,0.05);
+      font-size: 1.1rem;
+    }
+
+    a{
+      text-decoration: none;
+      color: #b4b4b4;
+    }
+
+  </style>
+</head>
+<body>
+
+  <header>
+    조원 소개
+  </header>
+
+  <main>
+    
+    <div class="menu">
+      <a href="이성헌.html"><button>이성헌(기록이)</button></a>
+      <a href="문하경.html"><button>문하경(조장)</button></a>
+      <a href="박현민자기소개.html"><button>박현민(조원)</button></a>
+    </div>
+  </main>
+
+  <footer>
+    <hr>
+    <a href="index.html">
+      <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#b4b4b4" viewBox="0 0 16 16" style="vertical-align: middle; margin-right: 5px;">
+        <path fill-rule="evenodd" d="M8 3.293l6 6V13.5a1.5 1.5 0 0 1-1.5 1.5H11a.5.5 0 0 1-.5-.5V11a1 1 0 0 0-1-1H6.5a1 1 0 0 0-1 1v3a.5.5 0 0 1-.5.5H3.5A1.5 1.5 0 0 1 2 13.5V9.293l6-6z"/>
+        <path fill-rule="evenodd" d="M7.293 1.5a1 1 0 0 1 1.414 0l6.647 6.646a.5.5 0 0 1-.708.708L8 2.207 1.354 8.854a.5.5 0 1 1-.708-.708L7.293 1.5z"/>
+      </svg>
+    </a>
+  </footer>
+  
+
+</body>
+</html>

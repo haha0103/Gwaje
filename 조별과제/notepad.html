@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>Word 스타일 메모장 (블루 테마)</title>
+  <style>
+    body {
+      background: #dbe9f4;
+      margin: 0;
+      padding: 30px;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    .editor-container {
+      max-width: 900px;
+      margin: auto;
+    }
+
+    .toolbar {
+      background: #1e88e5;
+      padding: 10px;
+      border-radius: 6px 6px 0 0;
+      display: flex;
+      justify-content: space-between; /* ✅ 좌우로 정렬 */
+      align-items: center;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+
+    .toolbar-left {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .toolbar-left button,
+    .toolbar-left select {
+      font-size: 14px;
+      padding: 6px 10px;
+      border: none;
+      background: #ffffff;
+      color: #1e88e5;
+      font-weight: bold;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .toolbar-left button:hover,
+    .toolbar-left select:hover {
+      background: #e3f2fd;
+    }
+
+    .toolbar-left select {
+      font-weight: normal;
+    }
+
+    .home-link svg {
+      transition: fill 0.2s;
+    }
+
+    .home-link:hover svg {
+      fill: #ffffff;
+    }
+
+    .page {
+      background: white;
+      width: 800px;
+      min-height: 1120px;
+      padding: 40px;
+      margin: auto;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+      outline: none;
+      border-radius: 6px;
+      line-height: 1.6;
+      font-size: 16px;
+    }
+
+    h1, h2 {
+      color: #1565c0;
+    }
+  </style>
+</head>
+<body>
+
+<div class="editor-container">
+  <div class="toolbar">
+    <div class="toolbar-left">
+      <button onclick="execCmd('bold')"><b>굵게</b></button>
+      <button onclick="execCmd('italic')"><i>기울임</i></button>
+      <button onclick="execCmd('underline')"><u>밑줄</u></button>
+      <button onclick="execCmd('justifyLeft')">왼쪽 정렬</button>
+      <button onclick="execCmd('justifyCenter')">가운데 정렬</button>
+      <button onclick="execCmd('justifyRight')">오른쪽 정렬</button>
+      <select onchange="execCmd('formatBlock', this.value)">
+        <option value="">단락</option>
+        <option value="h1">제목 1</option>
+        <option value="h2">제목 2</option>
+        <option value="p">본문</option>
+      </select>
+      <button onclick="saveContent()">저장</button>
+      <button onclick="loadContent()">불러오기</button>
+    </div>
+
+    <a href="index.html" class="home-link" title="홈으로 이동">
+      <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#c8c8c8" viewBox="0 0 16 16" style="vertical-align: middle;">
+        <path fill-rule="evenodd" d="M8 3.293l6 6V13.5a1.5 1.5 0 0 1-1.5 1.5H11a.5.5 0 0 1-.5-.5V11a1 1 0 0 0-1-1H6.5a1 1 0 0 0-1 1v3a.5.5 0 0 1-.5.5H3.5A1.5 1.5 0 0 1 2 13.5V9.293l6-6z"/>
+        <path fill-rule="evenodd" d="M7.293 1.5a1 1 0 0 1 1.414 0l6.647 6.646a.5.5 0 0 1-.708.708L8 2.207 1.354 8.854a.5.5 0 1 1-.708-.708L7.293 1.5z"/>
+      </svg>
+    </a>
+  </div>
+
+  <div class="page" id="editor" contenteditable="true">
+    여기에 내용을 입력하세요...
+  </div>
+</div>
+
+<script>
+  function execCmd(command, value = null) {
+    document.execCommand(command, false, value);
+  }
+
+  function saveContent() {
+    const content = document.getElementById("editor").innerHTML;
+    localStorage.setItem("word-style-doc", content);
+    alert("문서가 저장되었습니다.");
+  }
+
+  function loadContent() {
+    const content = localStorage.getItem("word-style-doc");
+    if (content) {
+      document.getElementById("editor").innerHTML = content;
+      alert("문서를 불러왔습니다.");
+    } else {
+      alert("저장된 문서가 없습니다.");
+    }
+  }
+</script>
+
+</body>
+</html>
