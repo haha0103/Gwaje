@@ -2,13 +2,15 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
-  <title>Word 스타일 메모장 (블루 테마)</title>
+  <title>메모장</title>
   <style>
     body {
       background: #dbe9f4;
       margin: 0;
       padding: 30px;
       font-family: 'Segoe UI', sans-serif;
+      color: #000;
+      transition: background 0.3s, color 0.3s;
     }
 
     .editor-container {
@@ -21,11 +23,12 @@
       padding: 10px;
       border-radius: 6px 6px 0 0;
       display: flex;
-      justify-content: space-between; /* ✅ 좌우로 정렬 */
+      justify-content: space-between; /* 좌우로 정렬 */
       align-items: center;
       box-shadow: 0 2px 5px rgba(0,0,0,0.1);
       margin-bottom: 20px;
       flex-wrap: wrap;
+      transition: background 0.3s;
     }
 
     .toolbar-left {
@@ -44,7 +47,7 @@
       font-weight: bold;
       border-radius: 4px;
       cursor: pointer;
-      transition: background 0.2s;
+      transition: background 0.2s, color 0.3s;
     }
 
     .toolbar-left button:hover,
@@ -58,6 +61,7 @@
 
     .home-link svg {
       transition: fill 0.2s;
+      fill: #d9d9d9;
     }
 
     .home-link:hover svg {
@@ -75,10 +79,79 @@
       border-radius: 6px;
       line-height: 1.6;
       font-size: 16px;
+      color: #000;
+      transition: background 0.3s, color 0.3s, box-shadow 0.3s;
     }
 
     h1, h2 {
       color: #1565c0;
+      transition: color 0.3s;
+    }
+
+    /* 다크모드 스타일 */
+    body.dark-mode {
+      background: #121212;
+      color: #e0e0e0;
+    }
+
+    body.dark-mode .toolbar {
+      background: #0d47a1;
+      box-shadow: 0 2px 5px rgba(255,255,255,0.1);
+    }
+
+    body.dark-mode .toolbar-left button,
+    body.dark-mode .toolbar-left select {
+      background: #263238;
+      color: #82b1ff;
+    }
+
+    body.dark-mode .toolbar-left button:hover,
+    body.dark-mode .toolbar-left select:hover {
+      background: #37474f;
+    }
+
+    body.dark-mode .home-link svg {
+      fill: #bbb;
+    }
+
+    body.dark-mode .home-link:hover svg {
+      fill: #fff;
+    }
+
+    body.dark-mode .page {
+      background: #1e1e1e;
+      color: #e0e0e0;
+      box-shadow: 0 0 10px rgba(255,255,255,0.1);
+    }
+
+    body.dark-mode h1, 
+    body.dark-mode h2 {
+      color: #90caf9;
+    }
+
+    /* 다크모드 토글 버튼 스타일 */
+    #darkModeToggle {
+      background: #ffffff;
+      color: #1e88e5;
+      font-weight: bold;
+      border-radius: 4px;
+      border: none;
+      cursor: pointer;
+      padding: 6px 12px;
+      transition: background 0.2s, color 0.3s;
+    }
+
+    #darkModeToggle:hover {
+      background: #e3f2fd;
+    }
+
+    body.dark-mode #darkModeToggle {
+      background: #263238;
+      color: #82b1ff;
+    }
+
+    body.dark-mode #darkModeToggle:hover {
+      background: #37474f;
     }
   </style>
 </head>
@@ -103,12 +176,15 @@
       <button onclick="loadContent()">불러오기</button>
     </div>
 
-    <a href="index.html" class="home-link" title="홈으로 이동">
-      <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#c8c8c8" viewBox="0 0 16 16" style="vertical-align: middle;">
-        <path fill-rule="evenodd" d="M8 3.293l6 6V13.5a1.5 1.5 0 0 1-1.5 1.5H11a.5.5 0 0 1-.5-.5V11a1 1 0 0 0-1-1H6.5a1 1 0 0 0-1 1v3a.5.5 0 0 1-.5.5H3.5A1.5 1.5 0 0 1 2 13.5V9.293l6-6z"/>
-        <path fill-rule="evenodd" d="M7.293 1.5a1 1 0 0 1 1.414 0l6.647 6.646a.5.5 0 0 1-.708.708L8 2.207 1.354 8.854a.5.5 0 1 1-.708-.708L7.293 1.5z"/>
-      </svg>
-    </a>
+    <div>
+      <button id="darkModeToggle" onclick="toggleDarkMode()">다크모드</button>
+      <a href="index.html" class="home-link" title="홈으로 이동" style="margin-left: 12px;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 16 16" style="vertical-align: middle;">
+          <path fill-rule="evenodd" d="M8 3.293l6 6V13.5a1.5 1.5 0 0 1-1.5 1.5H11a.5.5 0 0 1-.5-.5V11a1 1 0 0 0-1-1H6.5a1 1 0 0 0-1 1v3a.5.5 0 0 1-.5.5H3.5A1.5 1.5 0 0 1 2 13.5V9.293l6-6z"/>
+          <path fill-rule="evenodd" d="M7.293 1.5a1 1 0 0 1 1.414 0l6.647 6.646a.5.5 0 0 1-.708.708L8 2.207 1.354 8.854a.5.5 0 1 1-.708-.708L7.293 1.5z"/>
+        </svg>
+      </a>
+    </div>
   </div>
 
   <div class="page" id="editor" contenteditable="true">
@@ -136,6 +212,30 @@
       alert("저장된 문서가 없습니다.");
     }
   }
+
+  // 다크모드 토글 함수
+  function toggleDarkMode() {
+    const body = document.body;
+    body.classList.toggle('dark-mode');
+
+    // 다크모드 상태 저장 (로컬스토리지)
+    if (body.classList.contains('dark-mode')) {
+      localStorage.setItem('darkMode', 'enabled');
+      document.getElementById('darkModeToggle').textContent = '☀️';
+    } else {
+      localStorage.setItem('darkMode', 'disabled');
+      document.getElementById('darkModeToggle').textContent = '🌙';
+    }
+  }
+
+  // 페이지 로드 시 저장된 모드 적용
+  window.onload = () => {
+    const darkMode = localStorage.getItem('darkMode');
+    if (darkMode === 'enabled') {
+      document.body.classList.add('dark-mode');
+      document.getElementById('darkModeToggle').textContent = '☀️';
+    }
+  };
 </script>
 
 </body>

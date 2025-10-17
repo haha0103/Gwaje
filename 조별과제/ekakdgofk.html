@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>학업 일정 관리 달력</title>
+  <title>일정표</title>
   <style>
     body {
       font-family: "Segoe UI", Arial, sans-serif;
@@ -153,6 +153,80 @@
       padding:4px 0;
       align-items:center;
     }
+
+    body.dark-mode {
+  background: #1e1e2f;
+  color: #f0f0f0;
+}
+
+body.dark-mode h1 {
+  color: #ffffff;
+}
+
+body.dark-mode .calendar-container {
+  background: #2b2b3c;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.5);
+}
+
+body.dark-mode th {
+  background: #3a3a4a;
+  color: #f0f0f0;
+}
+
+body.dark-mode td {
+  background: #2f2f40;
+  color: #ddd;
+  border-color: #444;
+}
+
+body.dark-mode td.disabled {
+  background: #262636;
+  color: #777;
+}
+
+body.dark-mode td.today {
+  background: #34495e;
+  outline: 2px solid #3498db;
+}
+
+body.dark-mode td.holiday {
+  color: #ff6b6b;
+}
+
+body.dark-mode .event {
+  color: #fff;
+}
+
+body.dark-mode .modal-box {
+  background: #2e2e3f;
+  color: #fff;
+}
+
+body.dark-mode input,
+body.dark-mode select {
+  background: #444;
+  color: #fff;
+  border: 1px solid #777;
+}
+
+body.dark-mode .btn-delete {
+  background: #c0392b;
+}
+
+body.dark-mode .btn-delete:hover {
+  background: #922b21;
+}
+
+body.dark-mode #tooltip {
+  background: #555;
+  color: #fff;
+}
+
+body.dark-mode .event-item {
+  background: #3a3a4f;
+  color: #eee;
+}
+
   </style>
 </head>
 <body>
@@ -171,8 +245,10 @@
       <div id="monthYearLabel"></div>
       <div>
         <button id="categoryManageBtn">카테고리 관리</button>
+        <button id="toggleDarkModeBtn">🌙</button>
         <button id="nextMonthBtn">다음</button>
       </div>
+      
     </div>
     <table>
       <thead>
@@ -491,6 +567,21 @@ addCategoryBtn.addEventListener('click',()=>{
   newCategoryName.value='';
 });
 
+// 다크 모드 저장/로드
+function applyDarkMode(isDark) {
+  document.body.classList.toggle('dark-mode', isDark);
+  document.getElementById('toggleDarkModeBtn').textContent = isDark ? '☀️' : '🌙';
+  localStorage.setItem('darkMode', isDark);
+}
+
+document.getElementById('toggleDarkModeBtn').addEventListener('click', () => {
+  const isDark = !document.body.classList.contains('dark-mode');
+  applyDarkMode(isDark);
+});
+
+// 초기화 시 로컬스토리지에서 모드 불러오기
+const savedDarkMode = localStorage.getItem('darkMode') === 'true';
+applyDarkMode(savedDarkMode);
 init();
 </script>
 </body>
